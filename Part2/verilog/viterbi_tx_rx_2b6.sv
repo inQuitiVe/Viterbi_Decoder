@@ -1,5 +1,6 @@
-// Part 2.a.1: Invert bit[0] once every 8 samples  (BER = 1/16)
-// Pattern: 7 clean, 1 bad, 7 clean, 1 bad, ...
+// Part 2.b.6: Random version of 2.a.6 -- random 4-consecutive bit[0] bursts
+// Average: ~1 burst per 32 cycles  (trigger prob 1/32 per sample, burst length 4)
+// burst_cnt counts remaining cycles in the burst (0 = idle).
 module viterbi_tx_rx #(parameter N=4) (
    input    clk,
    input    rst,
@@ -14,10 +15,11 @@ module viterbi_tx_rx #(parameter N=4) (
    logic       encoder_i_reg, enable_decoder_in, enable_encoder_i_reg;
    wire        valid_encoder_o;
    logic [1:0] err_inj;
+   logic [2:0] burst_cnt;   // counts remaining burst cycles (1-based)
 
    always @ (posedge clk, negedge rst)
       if (!rst) begin
-         $display("2.a.1: bit[0] every 8 samples");
+         $display("2.b.6: random 4-burst bit[0], avg 1 burst per 32");
          error_counter        <= 0;
          bad_bit_ct           <= 0;
          encoder_o_reg        <= 0;
@@ -26,6 +28,7 @@ module viterbi_tx_rx #(parameter N=4) (
          enable_encoder_i_reg <= 0;
          word_ct              <= 0;
          err_inj              <= 0;
+         burst_cnt            <= 0;
       end
       else begin
          enable_encoder_i_reg <= enable_encoder_i;
@@ -34,14 +37,19 @@ module viterbi_tx_rx #(parameter N=4) (
          encoder_o_reg0       <= encoder_o;
          word_ct              <= word_ct + 1;
 
-         // invert bit[0] every 8 samples: trigger at positions 7,15,23,...
-         if (word_ct[2:0] == 3'h7) begin
+         if (burst_cnt > 0) begin
             err_inj       <= 2'b01;
+            burst_cnt     <= burst_cnt - 1;
+            error_counter <= error_counter + 1;
+         end else if ($random[4:0] == 5'b00000) begin
+            // ~1/32 trigger probability
+            err_inj       <= 2'b01;
+            burst_cnt     <= 3'd3;   // 3 more after this = 4 total
             error_counter <= error_counter + 1;
          end else
             err_inj <= 2'b00;
 
-         encoder_o_reg <= encoder_o ^ err_inj;   // inject (1-cycle delayed)
+         encoder_o_reg <= encoder_o ^ err_inj;
 
          if (word_ct < 256)
             bad_bit_ct <= bad_bit_ct

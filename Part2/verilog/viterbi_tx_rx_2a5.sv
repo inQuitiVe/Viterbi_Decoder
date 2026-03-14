@@ -1,5 +1,6 @@
-// Part 2.a.1: Invert bit[0] once every 8 samples  (BER = 1/16)
-// Pattern: 7 clean, 1 bad, 7 clean, 1 bad, ...
+// Part 2.a.5: Invert bit[1] TWICE in a row, every 16 samples  (BER = 2/32 = 1/16)
+// Pattern: 14 clean, 2 bad (bit[1]), 14 clean, 2 bad, ...
+// Trigger at positions 14,15 -> actual injections at 15,0 (consecutive)
 module viterbi_tx_rx #(parameter N=4) (
    input    clk,
    input    rst,
@@ -17,7 +18,7 @@ module viterbi_tx_rx #(parameter N=4) (
 
    always @ (posedge clk, negedge rst)
       if (!rst) begin
-         $display("2.a.1: bit[0] every 8 samples");
+         $display("2.a.5: bit[1] x2 every 16 (14 good, 2 bad)");
          error_counter        <= 0;
          bad_bit_ct           <= 0;
          encoder_o_reg        <= 0;
@@ -34,14 +35,14 @@ module viterbi_tx_rx #(parameter N=4) (
          encoder_o_reg0       <= encoder_o;
          word_ct              <= word_ct + 1;
 
-         // invert bit[0] every 8 samples: trigger at positions 7,15,23,...
-         if (word_ct[2:0] == 3'h7) begin
-            err_inj       <= 2'b01;
+         // trigger at positions 14,15 -> 2 consecutive injections on bit[1]
+         if (word_ct[3:0] >= 4'hE) begin
+            err_inj       <= 2'b10;
             error_counter <= error_counter + 1;
          end else
             err_inj <= 2'b00;
 
-         encoder_o_reg <= encoder_o ^ err_inj;   // inject (1-cycle delayed)
+         encoder_o_reg <= encoder_o ^ err_inj;
 
          if (word_ct < 256)
             bad_bit_ct <= bad_bit_ct

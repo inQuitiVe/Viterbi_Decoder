@@ -1,8 +1,6 @@
 // contains convolutional encoder,
-//  (possibly corrupting) channel,
+//  clean channel (no error injection for Part 1),
 //  and Viterbi decoder
-// parameter N sets the channel bit error rate
-// this time, bit[0] every 16 clocks
 module viterbi_tx_rx #(parameter N=4) (
    input    clk,
    input    rst,
@@ -36,27 +34,12 @@ module viterbi_tx_rx #(parameter N=4) (
       else begin 
          enable_encoder_i_reg <= enable_encoder_i;  
          enable_decoder_in    <= valid_encoder_o; 
-// bit error injection in encoder_o_reg        					           					           
          encoder_i_reg     <= encoder_i;
          encoder_o_reg0    <= encoder_o;
-// word_ct[N-1:0] generates strings of 2**N consecutive errors
-         word_ct              <= word_ct + 1;	err_trig = $random;		
-         if((word_ct<256) &&(word_ct[N-1:0]=='1)) begin	 // err_trig[N-1:0]
-            error_counter   <= error_counter + 1;
-//  N controls average rate of error injection
-		    err_inj        <= 2'b01;
-            encoder_o_reg  <= encoder_o^err_inj;	 // inject bad bits 
-         end
-         else begin       		   // clean version
-            err_inj        <= 2'b00;
-            encoder_o_reg  <= encoder_o;
-		end
-        if(word_ct<256) begin
-          bad_bit_ct  <= bad_bit_ct + (encoder_o_reg0[1]^encoder_o_reg[1])
-		                      + (encoder_o_reg0[0]^encoder_o_reg[0]);
-		  $display("error_counter,err_inj = %h %b %d %d",
-		         error_counter,err_inj,bad_bit_ct,word_ct);
-        end
+         word_ct           <= word_ct + 1;
+         // Part 1: no error injection -- clean channel
+         err_inj           <= 2'b00;
+         encoder_o_reg     <= encoder_o;
       end   
 
 																				   
