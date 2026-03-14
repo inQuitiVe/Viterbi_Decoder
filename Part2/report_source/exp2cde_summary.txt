@@ -1,0 +1,29 @@
+=== 2c: consecutive bit[0] errors (threshold = first bad>0) ===
+  BURST_LEN= 1: corrupted_bits =         326, OUT: good =         256, bad =           0
+  BURST_LEN= 2: corrupted_bits =         652, OUT: good =         256, bad =           0
+  BURST_LEN= 3: corrupted_bits =         978, OUT: good =         256, bad =           0
+  BURST_LEN= 4: corrupted_bits =        1304, OUT: good =         232, bad =          24
+  BURST_LEN= 5: corrupted_bits =        1630, OUT: good =         207, bad =          49
+  BURST_LEN= 6: corrupted_bits =        1956, OUT: good =         207, bad =          49
+  BURST_LEN= 7: corrupted_bits =        2282, OUT: good =         207, bad =          49
+  BURST_LEN= 8: corrupted_bits =        2608, OUT: good =         207, bad =          49
+
+=== 2d: consecutive bit[1] errors ===
+  BURST_LEN= 1: corrupted_bits =         326, OUT: good =         256, bad =           0
+  BURST_LEN= 2: corrupted_bits =         652, OUT: good =         256, bad =           0
+  BURST_LEN= 3: corrupted_bits =         978, OUT: good =         256, bad =           0
+  BURST_LEN= 4: corrupted_bits =        1304, OUT: good =         243, bad =          13
+  BURST_LEN= 5: corrupted_bits =        1630, OUT: good =         241, bad =          15
+  BURST_LEN= 6: corrupted_bits =        1956, OUT: good =         235, bad =          21
+  BURST_LEN= 7: corrupted_bits =        2282, OUT: good =         235, bad =          21
+  BURST_LEN= 8: corrupted_bits =        2608, OUT: good =         235, bad =          21
+
+=== 2e: consecutive bit[0]+bit[1] errors ===
+  BURST_LEN= 1: corrupted_bits =         326, OUT: good =         256, bad =           0
+  BURST_LEN= 2: corrupted_bits =         652, OUT: good =         238, bad =          18
+  BURST_LEN= 3: corrupted_bits =         978, OUT: good =         230, bad =          26
+  BURST_LEN= 4: corrupted_bits =        1304, OUT: good =         235, bad =          21
+  BURST_LEN= 5: corrupted_bits =        1630, OUT: good =         228, bad =          28
+  BURST_LEN= 6: corrupted_bits =        1956, OUT: good =         228, bad =          28
+  BURST_LEN= 7: corrupted_bits =        2282, OUT: good =         215, bad =          41
+  BURST_LEN= 8: corrupted_bits =        2608, OUT: good =         214, bad =          42

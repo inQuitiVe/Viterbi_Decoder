@@ -1,0 +1,262 @@
+word_count =       10440
+yaa! in = 0, out = 0, w_ct =           0, err = 00
+yaa! in = 0, out = 0, w_ct =           1, err = 00
+yaa! in = 0, out = 0, w_ct =           2, err = 00
+yaa! in = 0, out = 0, w_ct =           3, err = 00
+yaa! in = 0, out = 0, w_ct =           4, err = 00
+yaa! in = 0, out = 0, w_ct =           5, err = 00
+yaa! in = 0, out = 0, w_ct =           6, err = 00
+yaa! in = 0, out = 0, w_ct =           7, err = 00
+yaa! in = 0, out = 0, w_ct =           8, err = 00
+yaa! in = 0, out = 0, w_ct =           9, err = 00
+yaa! in = 0, out = 0, w_ct =          10, err = 00
+yaa! in = 1, out = 1, w_ct =          11, err = 00
+yaa! in = 0, out = 0, w_ct =          12, err = 00
+yaa! in = 0, out = 0, w_ct =          13, err = 00
+yaa! in = 1, out = 1, w_ct =          14, err = 00
+yaa! in = 1, out = 1, w_ct =          15, err = 00
+yaa! in = 0, out = 0, w_ct =          16, err = 00
+yaa! in = 0, out = 0, w_ct =          17, err = 00
+yaa! in = 0, out = 0, w_ct =          18, err = 00
+yaa! in = 1, out = 1, w_ct =          19, err = 00
+yaa! in = 1, out = 1, w_ct =          20, err = 00
+yaa! in = 1, out = 1, w_ct =          21, err = 00
+yaa! in = 0, out = 0, w_ct =          22, err = 00
+yaa! in = 0, out = 0, w_ct =          23, err = 00
+yaa! in = 0, out = 0, w_ct =          24, err = 00
+yaa! in = 0, out = 0, w_ct =          25, err = 00
+yaa! in = 1, out = 1, w_ct =          26, err = 00
+yaa! in = 1, out = 1, w_ct =          27, err = 00
+yaa! in = 1, out = 1, w_ct =          28, err = 00
+yaa! in = 1, out = 1, w_ct =          29, err = 00
+yaa! in = 0, out = 0, w_ct =          30, err = 00
+yaa! in = 0, out = 0, w_ct =          31, err = 00
+yaa! in = 0, out = 0, w_ct =          32, err = 00
+boo! in = 0, out = 1, w_ct =          33, err = 00,           1045000000, BAD!
+yaa! in = 0, out = 0, w_ct =          34, err = 00
+boo! in = 1, out = 0, w_ct =          35, err = 00,           1045000000, BAD!
+boo! in = 1, out = 0, w_ct =          36, err = 00,           1045000000, BAD!
+boo! in = 1, out = 0, w_ct =          37, err = 00,           1045000000, BAD!
+yaa! in = 1, out = 1, w_ct =          38, err = 00
+boo! in = 1, out = 0, w_ct =          39, err = 00,           1045000000, BAD!
+boo! in = 0, out = 1, w_ct =          40, err = 00,           1045000000, BAD!
+yaa! in = 1, out = 1, w_ct =          41, err = 00
+yaa! in = 0, out = 0, w_ct =          42, err = 00
+yaa! in = 1, out = 1, w_ct =          43, err = 00
+yaa! in = 0, out = 0, w_ct =          44, err = 00
+yaa! in = 1, out = 1, w_ct =          45, err = 00
+yaa! in = 0, out = 0, w_ct =          46, err = 00
+yaa! in = 1, out = 1, w_ct =          47, err = 00
+yaa! in = 0, out = 0, w_ct =          48, err = 00
+yaa! in = 1, out = 1, w_ct =          49, err = 00
+yaa! in = 0, out = 0, w_ct =          50, err = 00
+yaa! in = 0, out = 0, w_ct =          51, err = 00
+yaa! in = 1, out = 1, w_ct =          52, err = 00
+yaa! in = 1, out = 1, w_ct =          53, err = 00
+yaa! in = 0, out = 0, w_ct =          54, err = 00
+yaa! in = 0, out = 0, w_ct =          55, err = 00
+yaa! in = 0, out = 0, w_ct =          56, err = 00
+yaa! in = 1, out = 1, w_ct =          57, err = 00
+yaa! in = 1, out = 1, w_ct =          58, err = 00
+yaa! in = 1, out = 1, w_ct =          59, err = 00
+yaa! in = 0, out = 0, w_ct =          60, err = 00
+yaa! in = 0, out = 0, w_ct =          61, err = 00
+yaa! in = 0, out = 0, w_ct =          62, err = 00
+yaa! in = 0, out = 0, w_ct =          63, err = 00
+yaa! in = 1, out = 1, w_ct =          64, err = 00
+boo! in = 1, out = 0, w_ct =          65, err = 00,           1045000000, BAD!
+boo! in = 1, out = 0, w_ct =          66, err = 00,           1045000000, BAD!
+boo! in = 1, out = 0, w_ct =          67, err = 00,           1045000000, BAD!
+boo! in = 0, out = 1, w_ct =          68, err = 00,           1045000000, BAD!
+yaa! in = 0, out = 0, w_ct =          69, err = 00
+boo! in = 0, out = 1, w_ct =          70, err = 00,           1045000000, BAD!
+yaa! in = 0, out = 0, w_ct =          71, err = 00
+boo! in = 0, out = 1, w_ct =          72, err = 00,           1045000000, BAD!
+yaa! in = 1, out = 1, w_ct =          73, err = 00
+yaa! in = 1, out = 1, w_ct =          74, err = 00
+yaa! in = 1, out = 1, w_ct =          75, err = 00
+yaa! in = 1, out = 1, w_ct =          76, err = 00
+yaa! in = 1, out = 1, w_ct =          77, err = 00
+yaa! in = 0, out = 0, w_ct =          78, err = 00
+yaa! in = 1, out = 1, w_ct =          79, err = 00
+yaa! in = 0, out = 0, w_ct =          80, err = 00
+yaa! in = 1, out = 1, w_ct =          81, err = 00
+yaa! in = 0, out = 0, w_ct =          82, err = 00
+yaa! in = 1, out = 1, w_ct =          83, err = 00
+yaa! in = 0, out = 0, w_ct =          84, err = 00
+yaa! in = 1, out = 1, w_ct =          85, err = 00
+yaa! in = 0, out = 0, w_ct =          86, err = 00
+yaa! in = 0, out = 0, w_ct =          87, err = 00
+yaa! in = 0, out = 0, w_ct =          88, err = 00
+yaa! in = 0, out = 0, w_ct =          89, err = 00
+yaa! in = 0, out = 0, w_ct =          90, err = 00
+yaa! in = 0, out = 0, w_ct =          91, err = 00
+yaa! in = 0, out = 0, w_ct =          92, err = 00
+yaa! in = 0, out = 0, w_ct =          93, err = 00
+yaa! in = 0, out = 0, w_ct =          94, err = 00
+yaa! in = 0, out = 0, w_ct =          95, err = 00
+yaa! in = 1, out = 1, w_ct =          96, err = 00
+boo! in = 1, out = 0, w_ct =          97, err = 00,           1045000000, BAD!
+yaa! in = 1, out = 1, w_ct =          98, err = 00
+boo! in = 1, out = 0, w_ct =          99, err = 00,           1045000000, BAD!
+boo! in = 1, out = 0, w_ct =         100, err = 00,           1045000000, BAD!
+boo! in = 1, out = 0, w_ct =         101, err = 00,           1045000000, BAD!
+yaa! in = 1, out = 1, w_ct =         102, err = 00
+boo! in = 1, out = 0, w_ct =         103, err = 00,           1045000000, BAD!
+boo! in = 1, out = 0, w_ct =         104, err = 00,           1045000000, BAD!
+yaa! in = 1, out = 1, w_ct =         105, err = 00
+yaa! in = 0, out = 0, w_ct =         106, err = 00
+yaa! in = 0, out = 0, w_ct =         107, err = 00
+yaa! in = 0, out = 0, w_ct =         108, err = 00
+yaa! in = 1, out = 1, w_ct =         109, err = 00
+yaa! in = 0, out = 0, w_ct =         110, err = 00
+yaa! in = 1, out = 1, w_ct =         111, err = 00
+yaa! in = 1, out = 1, w_ct =         112, err = 00
+yaa! in = 0, out = 0, w_ct =         113, err = 00
+yaa! in = 0, out = 0, w_ct =         114, err = 00
+yaa! in = 0, out = 0, w_ct =         115, err = 00
+yaa! in = 1, out = 1, w_ct =         116, err = 00
+yaa! in = 0, out = 0, w_ct =         117, err = 00
+yaa! in = 1, out = 1, w_ct =         118, err = 00
+yaa! in = 1, out = 1, w_ct =         119, err = 00
+yaa! in = 1, out = 1, w_ct =         120, err = 00
+yaa! in = 1, out = 1, w_ct =         121, err = 00
+yaa! in = 0, out = 0, w_ct =         122, err = 00
+yaa! in = 0, out = 0, w_ct =         123, err = 00
+yaa! in = 1, out = 1, w_ct =         124, err = 00
+yaa! in = 0, out = 0, w_ct =         125, err = 00
+yaa! in = 0, out = 0, w_ct =         126, err = 00
+yaa! in = 0, out = 0, w_ct =         127, err = 00
+yaa! in = 0, out = 0, w_ct =         128, err = 00
+boo! in = 0, out = 1, w_ct =         129, err = 00,           1045000000, BAD!
+boo! in = 0, out = 1, w_ct =         130, err = 00,           1045000000, BAD!
+boo! in = 0, out = 1, w_ct =         131, err = 00,           1045000000, BAD!
+boo! in = 0, out = 1, w_ct =         132, err = 00,           1045000000, BAD!
+yaa! in = 0, out = 0, w_ct =         133, err = 00
+boo! in = 0, out = 1, w_ct =         134, err = 00,           1045000000, BAD!
+yaa! in = 0, out = 0, w_ct =         135, err = 00
+boo! in = 0, out = 1, w_ct =         136, err = 00,           1045000000, BAD!
+yaa! in = 1, out = 1, w_ct =         137, err = 00
+yaa! in = 1, out = 1, w_ct =         138, err = 00
+yaa! in = 1, out = 1, w_ct =         139, err = 00
+yaa! in = 1, out = 1, w_ct =         140, err = 00
+yaa! in = 1, out = 1, w_ct =         141, err = 00
+yaa! in = 1, out = 1, w_ct =         142, err = 00
+yaa! in = 1, out = 1, w_ct =         143, err = 00
+yaa! in = 1, out = 1, w_ct =         144, err = 00
+yaa! in = 1, out = 1, w_ct =         145, err = 00
+yaa! in = 1, out = 1, w_ct =         146, err = 00
+yaa! in = 0, out = 0, w_ct =         147, err = 00
+yaa! in = 1, out = 1, w_ct =         148, err = 00
+yaa! in = 1, out = 1, w_ct =         149, err = 00
+yaa! in = 1, out = 1, w_ct =         150, err = 00
+yaa! in = 1, out = 1, w_ct =         151, err = 00
+yaa! in = 1, out = 1, w_ct =         152, err = 00
+yaa! in = 1, out = 1, w_ct =         153, err = 00
+yaa! in = 1, out = 1, w_ct =         154, err = 00
+yaa! in = 1, out = 1, w_ct =         155, err = 00
+yaa! in = 1, out = 1, w_ct =         156, err = 00
+yaa! in = 1, out = 1, w_ct =         157, err = 00
+yaa! in = 1, out = 1, w_ct =         158, err = 00
+yaa! in = 1, out = 1, w_ct =         159, err = 00
+yaa! in = 1, out = 1, w_ct =         160, err = 00
+boo! in = 1, out = 0, w_ct =         161, err = 00,           1045000000, BAD!
+yaa! in = 1, out = 1, w_ct =         162, err = 00
+boo! in = 1, out = 0, w_ct =         163, err = 00,           1045000000, BAD!
+boo! in = 1, out = 0, w_ct =         164, err = 00,           1045000000, BAD!
+boo! in = 1, out = 0, w_ct =         165, err = 00,           1045000000, BAD!
+yaa! in = 1, out = 1, w_ct =         166, err = 00
+boo! in = 1, out = 0, w_ct =         167, err = 00,           1045000000, BAD!
+boo! in = 1, out = 0, w_ct =         168, err = 00,           1045000000, BAD!
+yaa! in = 1, out = 1, w_ct =         169, err = 00
+yaa! in = 1, out = 1, w_ct =         170, err = 00
+yaa! in = 1, out = 1, w_ct =         171, err = 00
+yaa! in = 1, out = 1, w_ct =         172, err = 00
+yaa! in = 1, out = 1, w_ct =         173, err = 00
+yaa! in = 1, out = 1, w_ct =         174, err = 00
+yaa! in = 1, out = 1, w_ct =         175, err = 00
+yaa! in = 1, out = 1, w_ct =         176, err = 00
+yaa! in = 1, out = 1, w_ct =         177, err = 00
+yaa! in = 1, out = 1, w_ct =         178, err = 00
+yaa! in = 1, out = 1, w_ct =         179, err = 00
+yaa! in = 1, out = 1, w_ct =         180, err = 00
+yaa! in = 1, out = 1, w_ct =         181, err = 00
+yaa! in = 1, out = 1, w_ct =         182, err = 00
+yaa! in = 1, out = 1, w_ct =         183, err = 00
+yaa! in = 1, out = 1, w_ct =         184, err = 00
+yaa! in = 1, out = 1, w_ct =         185, err = 00
+yaa! in = 1, out = 1, w_ct =         186, err = 00
+yaa! in = 1, out = 1, w_ct =         187, err = 00
+yaa! in = 1, out = 1, w_ct =         188, err = 00
+yaa! in = 1, out = 1, w_ct =         189, err = 00
+yaa! in = 1, out = 1, w_ct =         190, err = 00
+yaa! in = 1, out = 1, w_ct =         191, err = 00
+yaa! in = 1, out = 1, w_ct =         192, err = 00
+boo! in = 1, out = 0, w_ct =         193, err = 00,           1045000000, BAD!
+yaa! in = 1, out = 1, w_ct =         194, err = 00
+boo! in = 1, out = 0, w_ct =         195, err = 00,           1045000000, BAD!
+boo! in = 1, out = 0, w_ct =         196, err = 00,           1045000000, BAD!
+boo! in = 1, out = 0, w_ct =         197, err = 00,           1045000000, BAD!
+yaa! in = 1, out = 1, w_ct =         198, err = 00
+boo! in = 1, out = 0, w_ct =         199, err = 00,           1045000000, BAD!
+boo! in = 1, out = 0, w_ct =         200, err = 00,           1045000000, BAD!
+yaa! in = 1, out = 1, w_ct =         201, err = 00
+yaa! in = 1, out = 1, w_ct =         202, err = 00
+yaa! in = 1, out = 1, w_ct =         203, err = 00
+yaa! in = 1, out = 1, w_ct =         204, err = 00
+yaa! in = 1, out = 1, w_ct =         205, err = 00
+yaa! in = 1, out = 1, w_ct =         206, err = 00
+yaa! in = 1, out = 1, w_ct =         207, err = 00
+yaa! in = 1, out = 1, w_ct =         208, err = 00
+yaa! in = 1, out = 1, w_ct =         209, err = 00
+yaa! in = 1, out = 1, w_ct =         210, err = 00
+yaa! in = 1, out = 1, w_ct =         211, err = 00
+yaa! in = 1, out = 1, w_ct =         212, err = 00
+yaa! in = 1, out = 1, w_ct =         213, err = 00
+yaa! in = 1, out = 1, w_ct =         214, err = 00
+yaa! in = 1, out = 1, w_ct =         215, err = 00
+yaa! in = 1, out = 1, w_ct =         216, err = 00
+yaa! in = 1, out = 1, w_ct =         217, err = 00
+yaa! in = 1, out = 1, w_ct =         218, err = 00
+yaa! in = 1, out = 1, w_ct =         219, err = 00
+yaa! in = 1, out = 1, w_ct =         220, err = 00
+yaa! in = 1, out = 1, w_ct =         221, err = 00
+yaa! in = 1, out = 1, w_ct =         222, err = 00
+yaa! in = 1, out = 1, w_ct =         223, err = 00
+yaa! in = 1, out = 1, w_ct =         224, err = 00
+boo! in = 1, out = 0, w_ct =         225, err = 00,           1045000000, BAD!
+yaa! in = 1, out = 1, w_ct =         226, err = 00
+boo! in = 1, out = 0, w_ct =         227, err = 00,           1045000000, BAD!
+boo! in = 1, out = 0, w_ct =         228, err = 00,           1045000000, BAD!
+boo! in = 1, out = 0, w_ct =         229, err = 00,           1045000000, BAD!
+yaa! in = 1, out = 1, w_ct =         230, err = 00
+boo! in = 1, out = 0, w_ct =         231, err = 00,           1045000000, BAD!
+boo! in = 1, out = 0, w_ct =         232, err = 00,           1045000000, BAD!
+yaa! in = 1, out = 1, w_ct =         233, err = 00
+yaa! in = 1, out = 1, w_ct =         234, err = 00
+yaa! in = 1, out = 1, w_ct =         235, err = 00
+yaa! in = 1, out = 1, w_ct =         236, err = 00
+yaa! in = 1, out = 1, w_ct =         237, err = 00
+yaa! in = 1, out = 1, w_ct =         238, err = 00
+yaa! in = 1, out = 1, w_ct =         239, err = 00
+yaa! in = 1, out = 1, w_ct =         240, err = 00
+yaa! in = 1, out = 1, w_ct =         241, err = 00
+yaa! in = 1, out = 1, w_ct =         242, err = 00
+yaa! in = 1, out = 1, w_ct =         243, err = 00
+yaa! in = 1, out = 1, w_ct =         244, err = 00
+yaa! in = 1, out = 1, w_ct =         245, err = 00
+yaa! in = 1, out = 1, w_ct =         246, err = 00
+yaa! in = 1, out = 1, w_ct =         247, err = 00
+yaa! in = 0, out = 0, w_ct =         248, err = 00
+yaa! in = 1, out = 1, w_ct =         249, err = 00
+yaa! in = 1, out = 1, w_ct =         250, err = 00
+yaa! in = 1, out = 1, w_ct =         251, err = 00
+yaa! in = 1, out = 1, w_ct =         252, err = 00
+yaa! in = 1, out = 1, w_ct =         253, err = 00
+yaa! in = 1, out = 1, w_ct =         254, err = 00
+yaa! in = 1, out = 1, w_ct =         255, err = 00
+corrupted_bits =        2608, OUT: good =         214, bad =          42
+Simulation stopped via $stop(1) at time 1045 US + 0
+./sim/viterbi_tx_rx_tb.sv:91       $stop;
+xcelium> exit
+TOOL:	xrun	20.09-s017: Exiting on Mar 14, 2026 at 08:46:49 PDT  (total: 00:00:01)

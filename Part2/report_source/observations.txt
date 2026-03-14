@@ -1,0 +1,89 @@
+Part 2 Observations and Conclusions
+=====================================
+
+All results are based on decoding 256 output bits against the original encoder input.
+"bad" = number of bits the decoder got wrong (uncorrected errors).
+GAP = 32 for sweep tests (enough recovery time between bursts).
+
+
+1. Uniform vs. Random Injection (2a vs. 2b)
+--------------------------------------------
+Comparing tests with the same average BER:
+
+  2a1 (uniform, bit[0], interval=8,  repeat=1): bad = 0
+  2b1 (random,  bit[0], avg~8,       repeat=1): bad = 3
+
+  2a4 (uniform, bit[0], interval=16, repeat=2): bad = 0
+  2b4 (random,  bit[0], avg~16,      repeat=2): bad = 6
+
+  2a6 (uniform, bit[0], interval=32, repeat=4): bad = 24
+  2b6 (random,  bit[0], avg~32,      repeat=4): bad = 13
+
+Observation:
+  - At low burst repeat (repeat=1,2), random injection produces MORE errors than
+    uniform at the same average rate. This is because random spacing occasionally
+    clusters errors into accidental bursts that exceed the decoder's correction window.
+  - At higher repeat (repeat=4), uniform injection is actually harder to correct,
+    because the fixed-length burst of 4 is guaranteed every cycle, whereas the
+    random version only occasionally achieves bursts that long.
+
+Conclusion: Uniform spacing is not always "easier" than random — it depends on
+whether the burst length exceeds the decoder's tolerance threshold (see Section 3).
+
+
+2. Effect of Corrupted Bit Type (bit[0] vs. bit[1] vs. both)
+--------------------------------------------------------------
+Comparing tests with the same injection pattern but different bit target:
+
+  2a1 (bit[0], interval=8,  repeat=1): bad = 0
+  2a2 (bit[1], interval=8,  repeat=1): bad = 0
+  2a3 (bit[1:0], interval=16, repeat=1): bad = 0   ← same total BER as 2a1/2a2
+
+  2a6 (bit[0], interval=32, repeat=4): bad = 24
+  2a7 (bit[1], interval=32, repeat=4): bad = 13    ← bit[1] causes fewer errors
+
+  2c threshold (bit[0]):    BURST_LEN = 4
+  2d threshold (bit[1]):    BURST_LEN = 4
+  2e threshold (bit[0+1]):  BURST_LEN = 2
+
+Observation:
+  - bit[0] and bit[1] alone have the same burst threshold (4), but bit[0] errors
+    tend to produce more uncorrected output bits (bad=24 vs bad=13 at repeat=4).
+    This suggests bit[0] carries slightly more weight in the trellis path selection.
+  - Corrupting both bits simultaneously (bit[1:0]) halves the threshold to 2, since
+    each symbol contributes a Hamming distance of 2 instead of 1, overwhelming the
+    decoder's ability to distinguish correct paths in just 2 consecutive cycles.
+
+
+3. Burst Length Threshold (2c / 2d / 2e)
+-----------------------------------------
+The minimum number of consecutive bad symbols needed to produce output errors:
+
+  Bit(s) corrupted   |  Threshold (first BURST_LEN with bad > 0)
+  -------------------|-------------------------------------------
+  bit[0] only (2c)   |  4
+  bit[1] only (2d)   |  4
+  bit[0]+bit[1] (2e) |  2
+
+Observation:
+  - For single-bit corruption (2c, 2d), the decoder can tolerate up to 3 consecutive
+    errors and still recover. At 4 consecutive errors, the accumulated path cost
+    difference between correct and incorrect trellis paths becomes ambiguous enough
+    to cause mis-decoding.
+  - When both bits are flipped simultaneously (2e), the effective Hamming distance
+    per symbol doubles, so the decoder fails at only 2 consecutive symbols.
+  - Beyond the threshold, the number of bad bits increases but eventually plateaus
+    (e.g. 2c saturates near bad=49 for BURST_LEN>=5, 2d near bad=21 for BURST_LEN>=6).
+    This plateau occurs because the decoder converges to a wrong-but-consistent path
+    that happens to agree with some of the 256 sampled output bits.
+
+
+4. Overall Robustness Assessment
+----------------------------------
+  - The decoder is robust against isolated single-bit channel errors at any rate
+    tested (up to ~1/8 average BER for uniform patterns).
+  - The decoder begins to fail when bursts of 4 or more consecutive single-bit
+    errors occur within a GAP=32 window, or when 2 or more symbols are fully
+    corrupted (both bits flipped) consecutively.
+  - Random error injection is generally harder to correct than uniform at high burst
+    rates because of the possibility of accidental burst clustering.
