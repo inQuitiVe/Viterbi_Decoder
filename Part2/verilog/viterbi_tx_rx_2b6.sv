@@ -41,7 +41,7 @@ module viterbi_tx_rx #(parameter N=4) (
             err_inj       <= 2'b01;
             burst_cnt     <= burst_cnt - 1;
             error_counter <= error_counter + 1;
-         end else if ($random[4:0] == 5'b00000) begin
+         end else if (($random & 32'h1f) == 0) begin
             // ~1/32 trigger probability
             err_inj       <= 2'b01;
             burst_cnt     <= 3'd3;   // 3 more after this = 4 total

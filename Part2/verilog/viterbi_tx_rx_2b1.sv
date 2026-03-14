@@ -34,8 +34,8 @@ module viterbi_tx_rx #(parameter N=4) (
          encoder_o_reg0       <= encoder_o;
          word_ct              <= word_ct + 1;
 
-         // ~1/8 chance per sample: check 3 LSBs of $random == 0
-         if ($random[2:0] == 3'b000) begin
+         // ~1/8 chance per sample: ($random & 7) == 0
+         if (($random & 32'h7) == 0) begin
             err_inj       <= 2'b01;
             error_counter <= error_counter + 1;
          end else

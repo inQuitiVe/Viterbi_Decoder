@@ -7,9 +7,11 @@
 #   make all_2a          — run all 8 deterministic tests (2a1..2a8)
 #   make all_2b          — run all 8 random tests       (2b1..2b8)
 #   make all             — run all_2a + all_2b
+#   make transcripts     — run all 2a+2b, extract final counts into transcripts/
 #   make sweep_2c        — sweep BURST_LEN=1..MAX_BURST for test 2c  (bit[0])
 #   make sweep_2d        — same for test 2d (bit[1])
 #   make sweep_2e        — same for test 2e (bit[0]+bit[1])
+#   make sweep_summary   — print corrupted/good/bad table (run after sweeps)
 #   make clean           — remove all generated files
 #
 # Examples:
@@ -24,6 +26,7 @@ SDIR  := sim
 # ── Shared sub-modules ───────────────────────────────────────
 SUBS  := $(VDIR)/encoder.sv      \
           $(VDIR)/mem_8x1024.sv   \
+          $(VDIR)/mem_1x1024.sv   \
           $(VDIR)/bmc0.sv         \
           $(VDIR)/ACS.sv          \
           $(VDIR)/tbu.sv          \
@@ -48,8 +51,11 @@ MAX_BURST ?= 8
 TESTS_2A := 2a1 2a2 2a3 2a4 2a5 2a6 2a7 2a8
 TESTS_2B := 2b1 2b2 2b3 2b4 2b5 2b6 2b7 2b8
 
+# ── Output directory for submission transcripts ──────────────
+TRANS_DIR := transcripts
+
 # ── Targets ──────────────────────────────────────────────────
-.PHONY: sim all_2a all_2b all sweep_2c sweep_2d sweep_2e clean
+.PHONY: sim all_2a all_2b all transcripts sweep_2c sweep_2d sweep_2e sweep_summary clean
 
 # ── Single test ──────────────────────────────────────────────
 sim: $(SUBS) $(CHANNEL) $(TB)
@@ -81,6 +87,32 @@ all_2b: $(SUBS) $(TB)
 
 # ── Run everything ───────────────────────────────────────────
 all: all_2a all_2b
+
+# ── Run all 2a+2b and generate submission transcripts ─────────
+# Extracts final section from "word_count" through "corrupted_bits" (incl. yaa!/boo! lines).
+# Output: transcripts/2a1.txt .. 2a8.txt, 2b1.txt .. 2b8.txt, ALL.txt
+transcripts: $(SUBS) $(TB)
+	@mkdir -p $(TRANS_DIR)
+	@echo "Running all 2a and 2b tests..."
+	@for t in $(TESTS_2A) $(TESTS_2B); do \
+	    echo "  Running $$t..."; \
+	    $(XRUN) $(XFLAGS) -log $${t}.log \
+	        $(SUBS) $(VDIR)/viterbi_tx_rx_$${t}.sv $(TB) 2>/dev/null || true; \
+	    if grep -q "word_count" $${t}.log 2>/dev/null; then \
+	        sed -n '/word_count/,$$p' $${t}.log > $(TRANS_DIR)/$${t}.txt; \
+	    else \
+	        echo "ERROR: no word_count (test may have failed)" > $(TRANS_DIR)/$${t}.txt; \
+	    fi; \
+	done
+	@echo "" > $(TRANS_DIR)/ALL.txt
+	@for t in $(TESTS_2A) $(TESTS_2B); do \
+	    echo "=== $$t ===" >> $(TRANS_DIR)/ALL.txt; \
+	    cat $(TRANS_DIR)/$${t}.txt >> $(TRANS_DIR)/ALL.txt; \
+	    echo "" >> $(TRANS_DIR)/ALL.txt; \
+	done
+	@echo "=== transcripts complete ==="
+	@echo "  Individual: $(TRANS_DIR)/2a1.txt .. $(TRANS_DIR)/2b8.txt"
+	@echo "  Combined:   $(TRANS_DIR)/ALL.txt"
 
 # ── Threshold sweep: consecutive bit[0] errors (2c) ─────────
 # Uses xrun -defparam to override BURST_LEN at elaboration time.
@@ -120,6 +152,33 @@ sweep_2e: $(SUBS) $(TB)
 	@echo ""
 	@echo "=== sweep_2e complete. Logs: 2e_b1.log .. 2e_b$(MAX_BURST).log ==="
 
+# ── Print sweep summary (run after sweep_2c / sweep_2d / sweep_2e) ─────
+# Finds first BURST_LEN where bad > 0 = threshold answer.
+sweep_summary:
+	@echo "=== 2c: consecutive bit[0] errors (threshold = first bad>0) ==="
+	@for b in $(shell seq 1 $(MAX_BURST)); do \
+	    if [ -f 2c_b$${b}.log ] && grep -q "corrupted_bits" 2c_b$${b}.log; then \
+	        line=$$(grep "corrupted_bits" 2c_b$${b}.log | tail -1); \
+	        printf "  BURST_LEN=%2d: %s\n" $$b "$$line"; \
+	    fi; \
+	done
+	@echo ""
+	@echo "=== 2d: consecutive bit[1] errors ==="
+	@for b in $(shell seq 1 $(MAX_BURST)); do \
+	    if [ -f 2d_b$${b}.log ] && grep -q "corrupted_bits" 2d_b$${b}.log; then \
+	        line=$$(grep "corrupted_bits" 2d_b$${b}.log | tail -1); \
+	        printf "  BURST_LEN=%2d: %s\n" $$b "$$line"; \
+	    fi; \
+	done
+	@echo ""
+	@echo "=== 2e: consecutive bit[0]+bit[1] errors ==="
+	@for b in $(shell seq 1 $(MAX_BURST)); do \
+	    if [ -f 2e_b$${b}.log ] && grep -q "corrupted_bits" 2e_b$${b}.log; then \
+	        line=$$(grep "corrupted_bits" 2e_b$${b}.log | tail -1); \
+	        printf "  BURST_LEN=%2d: %s\n" $$b "$$line"; \
+	    fi; \
+	done
+
 # ── Clean ─────────────────────────────────────────────────────
 clean:
-	rm -rf xcelium.d INCA_libs .simvision xrun.log *.log *.key
+	rm -rf xcelium.d INCA_libs .simvision xrun.log *.log *.key *.history

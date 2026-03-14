@@ -34,7 +34,7 @@ module viterbi_tx_rx #(parameter N=4) (
          word_ct              <= word_ct + 1;
 
          // ~1/16 chance: check 4 LSBs == 0
-         if ($random[3:0] == 4'b0000) begin
+         if (($random & 32'hf) == 0) begin
             err_inj       <= 2'b11;
             error_counter <= error_counter + 1;
          end else

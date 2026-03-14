@@ -40,7 +40,7 @@ module viterbi_tx_rx #(parameter N=4) (
             err_inj       <= 2'b11;
             burst_active  <= 0;
             error_counter <= error_counter + 1;
-         end else if ($random[4:0] == 5'b00000) begin
+         end else if (($random & 32'h1f) == 0) begin
             err_inj       <= 2'b11;
             burst_active  <= 1;
             error_counter <= error_counter + 1;

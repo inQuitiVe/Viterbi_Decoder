@@ -42,7 +42,7 @@ module viterbi_tx_rx #(parameter N=4) (
             err_inj      <= 2'b01;
             burst_active <= 0;
             error_counter <= error_counter + 1;
-         end else if ($random[3:0] == 4'b0000) begin
+         end else if (($random & 32'hf) == 0) begin
             // trigger a new burst (~1/16 prob)
             err_inj      <= 2'b01;
             burst_active <= 1;

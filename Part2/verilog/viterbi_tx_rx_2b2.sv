@@ -33,7 +33,7 @@ module viterbi_tx_rx #(parameter N=4) (
          encoder_o_reg0       <= encoder_o;
          word_ct              <= word_ct + 1;
 
-         if ($random[2:0] == 3'b000) begin
+         if (($random & 32'h7) == 0) begin
             err_inj       <= 2'b10;
             error_counter <= error_counter + 1;
          end else
