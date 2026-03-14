@@ -1,5 +1,12 @@
 // test bench	generates test signals, operates environment, checks and scores outputs
 module viterbi_tx_rx_tb();
+
+`ifdef DUMP_VCD
+   initial begin
+      $dumpfile("waves.vcd");
+      $dumpvars(0, viterbi_tx_rx_tb);
+   end
+`endif
    bit clk;
    bit rst;
    bit encoder_i;		   // original data

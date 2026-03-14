@@ -1,0 +1,41 @@
+# ── Cadence Xcelium / Incisive ──────────────────────────────
+xcelium.d/
+INCA_libs/
+xrun.log
+*.key
+*.diag
+*.history
+.simvision/
+waves.shm/
+*.shm/
+*.trn
+*.dsn
+*.nc
+*.so
+*.d/
+ncprof.out
+
+# ── Simulation logs & waveforms ─────────────────────────────
+*.log
+sim.log
+sim_waves.log
+*.fsdb
+*.evcd
+*.wlf
+*.vpd
+
+# ── Questa / ModelSim ───────────────────────────────────────
+work/
+vsim.wlf
+modelsim.ini
+
+# ── OS / editor ──────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+
+# ── Excel temp (for .xlsx) ────────────────────────────────────
+~$*.xlsx
+~$*.xls

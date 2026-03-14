@@ -13,6 +13,7 @@ SDIR  := sim
 # ── Source files ─────────────────────────────────────────────
 SUBS  := $(VDIR)/encoder.sv        \
           $(VDIR)/mem_8x1024.sv     \
+          $(VDIR)/mem_1x1024.sv     \
           $(VDIR)/bmc0.sv           \
           $(VDIR)/ACS.sv            \
           $(VDIR)/tbu.sv            \
@@ -33,16 +34,21 @@ SRCS  := $(SUBS) $(CHANNEL) $(TB)
 XFLAGS := -sv                  \
            -timescale 1ns/1ps  \
            -access +rwc        \
-           -exit               \
-           -log sim.log
+           -exit
 
 # ── Targets ──────────────────────────────────────────────────
-.PHONY: sim clean
+.PHONY: sim waves clean
 
 sim: $(SRCS)
-	$(XRUN) $(XFLAGS) $(SRCS)
+	$(XRUN) $(XFLAGS) -log sim.log $(SRCS)
 	@echo ""
 	@echo "=== Simulation complete. Transcript: sim.log ==="
 
+waves: $(SRCS)
+	$(XRUN) $(XFLAGS) -log sim_waves.log -define DUMP_VCD $(SRCS)
+	@echo ""
+	@echo "=== Waveform written to waves.vcd ==="
+	@echo "    Open with:  gtkwave waves.vcd &"
+
 clean:
-	rm -rf xcelium.d INCA_libs .simvision xrun.log sim.log *.key
+	rm -rf xcelium.d INCA_libs .simvision xrun.log sim.log sim_waves.log waves.vcd *.key

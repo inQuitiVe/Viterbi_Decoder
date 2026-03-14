@@ -1,0 +1,82 @@
+Part 1 — Design Notes
+=====================
+
+Rate-1/2, constraint-length-3 convolutional encoder + Viterbi decoder.
+All modules implemented in SystemVerilog.
+
+
+System Data Flow
+----------------
+encoder_i → [encoder] → encoder_o → [clean channel] → d_in → [decoder] → d_out
+
+Inside the decoder:
+  d_in (2 bits/cycle)
+    → 8x BMC  (Hamming distance per state)
+    → 8x ACS  (path cost compare + select)
+    → 4x Trellis Memory A/B/C/D  (8-bit x 1024, ping-pong, bank rotates every 1024 cycles)
+    → 2x TBU  (trace back through stored selections)
+    → 2x Display Memory  (1-bit x 1024, ping-pong)
+    → d_out
+
+
+Module Descriptions
+-------------------
+
+encoder.sv
+  8-state FSM, rate-1/2 code. d_out and valid_o are registered (1-cycle latency).
+
+bmc0.sv  (two modules: bmc, bmc_inv)
+  Computes 2-bit Hamming distance between received rx_pair and expected output.
+  bmc     — for states 0,3,4,7: uses rx_pair[1] directly
+  bmc_inv — for states 1,2,5,6: inverts rx_pair[1] before computing metric
+  Formula: {a & b, a ^ b} encodes Hamming distance (00→0, 01/10→1, 11→2)
+
+ACS.sv  (combinational)
+  Adds branch metric to prior path cost, compares two incoming paths, selects minimum.
+  Validity propagation: valid_o = path_0_valid | path_1_valid
+  Output path_cost = 0 when valid_o = 0.
+
+tbu.sv
+  State machine that reads trellis memory backward (traceback direction).
+  Reconstructs decoded bit stream from ACS selection vectors.
+  Kick-start logic: pstate updates one extra cycle when selection transitions 1→0.
+
+mem_8x1024.sv  (module mem)
+  Synchronous 8-bit x 1024 RAM. Stores ACS selection vectors (one 8-bit vector per cycle).
+
+mem_1x1024.sv  (module mem_disp)
+  Synchronous 1-bit x 1024 RAM. Stores decoded output bits for display/read-out.
+
+decoder.sv  (top-level)
+  Instantiates 8x BMC, 8x ACS, 4x trellis mem, 2x TBU, 2x display mem.
+  Manages write/read counters and bank rotation.
+
+
+Trellis Memory — 4-Bank Ping-Pong
+----------------------------------
+mem_bank increments every 1024 cycles (0→1→2→3→0).
+
+  mem_bank=0: Write→A, Read→B,D, Clear→C
+  mem_bank=1: Write→B, Read→A,C, Clear→D
+  mem_bank=2: Write→C, Read→B,D, Clear→A
+  mem_bank=3: Write→D, Read→A,C, Clear→B
+
+Write address: wr_mem_counter (0→1023, incrementing)
+Read address:  rd_mem_counter (1023→0, decrementing, traceback)
+
+
+Pipeline Delay
+--------------
+mem_bank → Q → Q2 → Q3 → Q4 → Q5 (5-stage pipeline)
+d_out = Q5 ? d_o_disp_mem_1 : d_o_disp_mem_0
+
+Total latency from first valid input to first valid output: ~4096 + 9 cycles.
+Testbench waits 410500 ns (= 4105 cycles at 100 ns/cycle) before reading d_out.
+
+
+Why Minimum Branch Metric = 0 (Error-Free)
+-------------------------------------------
+When the channel is clean, the received symbol equals the expected encoder output.
+For any state, the correct path branch metric = 0 (Hamming distance to itself).
+All other paths receive positive metrics, so the correct path is always selected.
+In simulation, one of the 8 ACS path costs should remain at 0 throughout.
